@@ -23,7 +23,8 @@ export class ChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.createSvg();
-    this.drawBars(this.data);
+    // this.drawBars(this.data);
+    d3.json('https://api.jsonbin.io/b/5eee6a5397cb753b4d149343').then((data:any) => this.drawBars(data));
   }
   private createSvg(): void {
     this.svg = d3.select("figure#bar")
@@ -70,3 +71,4 @@ private drawBars(data: any[]): void {
   .attr("fill", "#d04a35");
 }
 }
+//barchart//linechart throught same fuction

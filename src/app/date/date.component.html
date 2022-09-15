@@ -1,0 +1,40 @@
+<div class="row m-4">
+  <!-- ///startdate/////// -->
+  <div class="col-md-6">
+    <mat-form-field appearance="fill">
+      <mat-label>Start date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        #startDateRef="ngModel"
+        ngModel
+        name="startDate"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <!-- ////enddate////// -->
+  <div class="col-md-6">
+    <mat-form-field appearance="fill">
+      <mat-label>End date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker1"
+        name="endDate"
+        isLessThanStartDate="{{ startDateRef.value }}"
+        #endDateRef="ngModel"
+        ngModel
+        required
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+      <mat-error
+        *ngIf="endDateRef.touched && endDateRef.hasError('StartDateIsMore')"
+        >End date should be greater</mat-error
+      >
+    </mat-form-field>
+  </div>
+</div>
